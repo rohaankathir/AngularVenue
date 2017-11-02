@@ -4,7 +4,8 @@ import { ProductService } from './product.service';
 
 // Class decorator
 @Component({
-    selector: 'pm-products',
+    // We need selector only if we are nesting this inside html
+    //selector: 'pm-products',
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.css']
 })
@@ -14,6 +15,7 @@ export class ProductListComponent
     imageWidth: number = 50;
     imageMargin: number = 2;
     showImage: boolean = false;
+    errorMessage: string;
    
     private _listFilter : string;
     public get listFilter() : string {
@@ -37,8 +39,13 @@ export class ProductListComponent
     // Initial load function if required.
     // Good practice 
     ngOnInit(): void{
-        this.products = this._productService.getProducts();
-        this.filteredProducts = this.products;
+        this._productService.getProducts()
+            .subscribe(products => {
+                this.products = products;
+                this.filteredProducts = this.products;
+            }, 
+            error => this.errorMessage = <any>error);        
+        
         this.listFilter = '';
     }
 
