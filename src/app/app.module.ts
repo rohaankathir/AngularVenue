@@ -1,37 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ProductListComponent } from './products/product-list.component';
-import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
-import { StarComponent } from './shared/star.component';
-import { ProductDetailComponent } from './products/product-detail.component';
 import { WelcomeComponent } from './home/welcome.component';
+import { ProductModule } from './products/product.module';
+import { AppRoutingModule } from './app-routing.module';
+
+/*
+  Following will create a new module and also register in app.module
+  ng g m products/product --flat -m app.module
+  m - module
+  products - folder name
+  product - module name
+  flat - don't create a new folder
+  m - to regsiter to a module specify the module name again
+*/
+
 
 @NgModule({
   declarations: [ 
+    // List of components that belongs to this module
     AppComponent,
-    ProductListComponent,
-    ConvertToSpacesPipe,
-    StarComponent,
-    ProductDetailComponent,
     WelcomeComponent
   ],
   imports: [ 
     BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule.forRoot([
-      { path: 'products', component: ProductListComponent},
-      { path: 'product/:id', component: ProductDetailComponent},
-      { path: 'welcome', component: WelcomeComponent},
-      { path: '', redirectTo: 'welcome', pathMatch: 'full'},
-      { path: '**', redirectTo: 'welcome', pathMatch: 'full'}
-    ])
+    HttpClientModule,   
+    // Feature modules. Include them all here
+    // Also remember, angular will register the routes in the order we specify here.
+    ProductModule,
+    AppRoutingModule
   ],
+  // It is always recommended to register it only once to use the Singleton. So always register this once in only app module
   providers: [],
   bootstrap: [AppComponent]
 })
