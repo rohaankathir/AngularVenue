@@ -1,0 +1,4 @@
+Build
+
+ng build
+ng build --prod // This will minify
