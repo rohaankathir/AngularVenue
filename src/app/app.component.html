@@ -1,5 +1,5 @@
 <!--The whole content below can be removed with the new code.-->
-
+<!--
 <div>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -14,4 +14,47 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-
+-->
+<mat-toolbar color="primary">  
+    <button mat-fab color="accent" 
+      (click)="sideNav.toggle()">
+        <i class="material-icons">menu</i>
+    </button>
+    <span>&nbsp;</span>
+    <span>Angular Venue</span>    
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav-container>        
+        <mat-sidenav #sideNav mode="over" align="start">          
+          <div>
+            <button mat-menu-item
+              [routerLink] = "['/welcome']" >Home
+            </button>
+          </div>
+          <div>
+            <button mat-menu-item [matMenuTriggerFor]="matMenuProducts"
+              [routerLink] = "['/products']">Product
+            </button>
+          </div>
+          <div>
+              <button mat-menu-item>Members</button>
+          </div>
+          <div>
+              <button mat-menu-item>Customers</button>
+          </div>  
+           
+        </mat-sidenav>
+        <mat-menu>
+            <mat-menu #matMenuProducts="matMenu">
+                <button mat-menu-item>Products List</button>
+                <button mat-menu-item>Products Details</button>
+            </mat-menu> 
+        </mat-menu>  
+        <br/>
+        <!-- Body -->
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-container>
+    
+</mat-sidenav-container>>

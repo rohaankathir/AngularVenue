@@ -17,12 +17,12 @@
                 <h3>Filtered By: {{listFilter}}</h3>
             </div>
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive mat-elevation-z8">
             <table class="table" *ngIf="products && products.length">
                 <thead>
                     <tr>
                         <th>
-                            <button class="btn btn-primary" 
+                            <button class="btn btn-primary mat-elevation-z8"
                                 (click) = "toggleImage()">
                                 {{showImage? 'Hide' : 'Show'}} Image 
                             </button>

@@ -14,7 +14,7 @@ export class ProductDetailComponent implements OnInit {
   product: IProduct;
 
   // ActivatedRoute is used to accept parameters 
-  // Router is used to route from this componenet to another
+  // Router is used to route from this component to another
   constructor(private _route: ActivatedRoute,
     private _router: Router) { 
 
